@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Renan Cunha dos Santos — Portfolio PM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --ink: #0D0F14; --ink2: #1A1D26; --paper: #F8F6F1; --paper2: #F0E8D8;
+  --mid: #6B6E78; --rule: #E5D8C2; --gold: #C8933A; --gold-pale: #F6ECDA;
+  --gold-dark: #9B6B1E; --gold-light: #FBF4E8; --gold-mid: #E8B870;
+  --teal: #9B6B1E; --teal-pale: #F6ECDA;
+  --red: #C8933A; --red-pale: #F6ECDA; --purple: #9B6B1E; --purple-pale: #F6ECDA;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 15px; }
+body { font-family: 'Inter', sans-serif; background: var(--paper); color: var(--ink); line-height: 1.65; }
+::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--paper2); } ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+header {
+  background: var(--ink); padding: 0 clamp(1.5rem, 5vw, 4rem);
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid var(--gold);
+}
+.logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; color: #C8933A; text-decoration: none; }
+.logo span { color: #C8933A; }
+nav { display: flex; gap: 0.25rem; }
+nav a { color: #888; text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.4rem 0.75rem; border-radius: 4px; transition: background 0.2s, color 0.2s; }
+nav a:hover { color: var(--gold); background: rgba(200,147,58,0.08); }
+
+.hero { background: var(--ink2); padding: clamp(3rem,6vw,5rem) clamp(1.5rem,5vw,4rem); display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: start; }
+.hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+.hero-eyebrow::before { content:''; display:block; width:24px; height:1px; background:var(--gold); }
+.hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.2rem,4.5vw,3.6rem); line-height: 1.06; color: #fff; margin-bottom: 0.4rem; }
+.hero h1 em { font-style: normal; color: var(--gold); }
+.hero-subtitle { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.82rem; color: #5A5E6E; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.6rem; }
+.hero-bio { max-width: 560px; color: #9499A8; font-size: 0.9rem; line-height: 1.8; margin-bottom: 2rem; }
+.hero-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.btn { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.65rem 1.4rem; border-radius: 4px; text-decoration: none; transition: all 0.2s; display: inline-block; }
+.btn-gold { background: var(--gold); color: var(--ink); }
+.btn-gold:hover { background: #D9A44A; }
+.btn-outline { background: transparent; color: #888; border: 1px solid #333; }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.8rem; padding-top: 1.8rem; border-top: 1px solid #222631; }
+.badge { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; padding: 0.25rem 0.65rem; border-radius: 3px; letter-spacing: 0.03em; }
+.badge-gold { background: rgba(200,147,58,0.12); color: var(--gold); border: 1px solid rgba(200,147,58,0.3); }
+.badge-dim  { background: rgba(255,255,255,0.04); color: #5A5E6E; border: 1px solid #222631; }
+
+.hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #2A2D38; border: 1px solid #2A2D38; width: 200px; }
+.hero-stat { background: var(--ink2); padding: 1.1rem 1.2rem; }
+.stat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.8rem; color: var(--gold); line-height: 1; margin-bottom: 0.25rem; }
+.stat-lbl { font-size: 0.68rem; color: #5A5E6E; letter-spacing: 0.06em; text-transform: uppercase; }
+
+.wrap { padding: clamp(3rem,5vw,4.5rem) clamp(1.5rem,5vw,4rem); }
+.section-header { margin-bottom: 2.5rem; }
+.section-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.6rem; }
+.section-eyebrow::before { content:''; display:block; width:18px; height:1px; background:var(--gold); }
+.section-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.4rem,2.5vw,1.9rem); line-height: 1.2; }
+.divider { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5px; background: var(--rule); border: 1.5px solid var(--rule); }
+.card { background: var(--paper); padding: 1.75rem 2rem; display: flex; flex-direction: column; gap: 1rem; transition: background 0.15s; }
+.card:hover { background: #FBF9F5; }
+.card-type { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.22rem 0.6rem; border-radius: 3px; display: inline-block; width: fit-content; }
+.t-agile  { background: #F6ECDA; color: #9B6B1E; }
+.t-hybrid { background: #F0E4C8; color: #7A5218; }
+.t-pmbok  { background: #EAD8B0; color: #5C3C10; }
+.card-company { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; margin-bottom: 0.1rem; }
+.card-role    { font-size: 0.8rem; color: var(--mid); }
+.card-period  { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gold); }
+.card-desc    { font-size: 0.85rem; color: var(--mid); line-height: 1.7; }
+.card-metrics { background: var(--paper2); border-left: 3px solid var(--gold); padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.metric-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; gap: 1rem; }
+.metric-k { color: var(--mid); }
+.metric-v { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.82rem; text-align: right; }
+.tools { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.tool { font-family: 'JetBrains Mono', monospace; font-size: 0.63rem; padding: 0.18rem 0.5rem; background: var(--ink); color: #9499A8; border-radius: 2px; }
+
+.ceremonies { display: grid; grid-template-columns: repeat(5,1fr); border: 1px solid var(--rule); margin-bottom: 2.5rem; }
+.ceremony { padding: 1.4rem 1.2rem; border-right: 1px solid var(--rule); position: relative; }
+.ceremony:last-child { border-right: none; }
+.cer-num { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+.ceremony h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem; margin-bottom: 0.45rem; }
+.ceremony p  { font-size: 0.78rem; color: var(--mid); line-height: 1.55; }
+
+.backlog-wrap { overflow-x: auto; border: 1px solid var(--rule); margin-top: 0.5rem; }
+.backlog { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 640px; }
+.backlog th { text-align: left; padding: 0.65rem 0.85rem; background: var(--ink); color: var(--paper); font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.05em; white-space: nowrap; }
+.backlog td { padding: 0.7rem 0.85rem; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+.backlog tr:last-child td { border-bottom: none; }
+.backlog tr:hover td { background: var(--gold-pale); }
+.moscow { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; padding: 0.22rem 0.55rem; border-radius: 3px; white-space: nowrap; font-weight: 600; }
+.M { background: #F6ECDA; color: #5C3C10; }
+.S { background: #F0E4C8; color: #7A5218; }
+.C { background: #EAD8B0; color: #9B6B1E; }
+.W { background: #EEE8E0; color: var(--mid); }
+.sp-cell { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 500; text-align: center; }
+.status-done  { color: #7A5218; font-weight: 600; font-size: 0.8rem; }
+.status-wip   { color: var(--gold); font-weight: 600; font-size: 0.8rem; }
+.status-todo  { color: var(--mid);                     font-size: 0.8rem; }
+.status-defer { color: #bbb;                           font-size: 0.8rem; }
+.story-id { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--mid); }
+
+.flow { display: grid; grid-template-columns: repeat(5,1fr); border: 1px solid var(--rule); }
+.flow-step { padding: 1.3rem; border-right: 1px solid var(--rule); }
+.flow-step:last-child { border-right: none; }
+.flow-num { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); margin-bottom: 0.3rem; }
+.flow-step h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.82rem; margin-bottom: 0.35rem; }
+.flow-step p  { font-size: 0.76rem; color: var(--mid); line-height: 1.5; }
+
+.artifacts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1rem; }
+.art-card { border: 1px solid var(--rule); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; transition: border-color 0.2s; }
+.art-card:hover { border-color: var(--gold); }
+.art-icon { font-size: 1.3rem; }
+.art-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; }
+.art-card p  { font-size: 0.82rem; color: var(--mid); line-height: 1.6; flex: 1; }
+.art-link { display: inline-flex; align-items: center; gap: 0.35rem; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold-dark); text-decoration: none; border-bottom: 1px solid var(--gold-pale); padding-bottom: 1px; transition: border-color 0.2s; width: fit-content; }
+.art-link:hover { border-color: var(--gold); }
+
+.certs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.cert { background: var(--paper); padding: 1.2rem 1.4rem; display: flex; gap: 0.85rem; align-items: flex-start; }
+.cert-dot { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.cert-name   { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.82rem; margin-bottom: 0.15rem; }
+.cert-issuer { font-size: 0.73rem; color: var(--mid); }
+
+.langs { display: flex; gap: 1px; background: var(--rule); border: 1px solid var(--rule); flex-wrap: wrap; }
+.lang { background: var(--paper); padding: 1.2rem 1.5rem; flex: 1; min-width: 140px; }
+.lang-name  { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; margin-bottom: 0.2rem; }
+.lang-level { font-size: 0.78rem; color: var(--mid); }
+.lang-bar   { height: 3px; background: var(--rule); border-radius: 2px; margin-top: 0.65rem; overflow: hidden; }
+.lang-fill  { height: 100%; background: var(--gold); border-radius: 2px; }
+
+.contact-section { background: var(--ink2); }
+.contact-section .section-title { color: #fff; }
+.contact-grid { display: flex; flex-wrap: wrap; gap: 2.5rem; }
+.contact-item { display: flex; flex-direction: column; gap: 0.2rem; }
+.contact-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+.contact-val { font-size: 0.88rem; color: #9499A8; }
+.contact-val a { color: #9499A8; text-decoration: none; transition: color 0.2s; }
+.contact-val a:hover { color: var(--gold); }
+
+footer { background: #080A0E; color: #333; text-align: center; padding: 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.08em; }
+
+.cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+@media(max-width:900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-stats { display: none; }
+  .ceremonies, .flow { grid-template-columns: 1fr 1fr; }
+  .ceremony { border-bottom: 1px solid var(--rule); }
+  .cert-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media(max-width:600px) {
+  header { flex-wrap: wrap; height: auto; padding: 0.75rem 1.5rem; gap: 0.5rem; }
+  nav a { font-size: 0.72rem; padding: 0.3rem 0.5rem; }
+  .ceremonies, .flow { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#"><span>R</span>enan Cunha</a>
+  <nav>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#scrum">Scrum</a>
+    <a href="#artefactos">Artefactos</a>
+    <a href="#contacto">Contacto</a>
+  <a class="btn btn-outline" href="index-en.html" style="font-size:0.72rem;padding:0.3rem 0.75rem;">EN</a></nav>
+</header>
+
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">Portfolio · 2019 – Presente</div>
+    <h1>Gerente de<br/>Proyectos <em>&</em><br/>Scrum Master</h1>
+    <div class="hero-subtitle">Agile · Waterfall/PMI · IA &amp; Realidad Virtual</div>
+    <p class="hero-bio">Más de 6 años liderando proyectos de principio a fin en tecnología IA, telecomunicaciones y eventos. Actualmente gestionando 3 equipos ágiles (27 personas) en proyectos de IA generativa y VR para Barceló, Amadeus, TUI y Lopesan. Certificado PSM I &amp; PSPO I. Trilingüe: PT · ES · EN.</p>
+    <div class="hero-cta">
+      <a class="btn btn-gold" href="#proyectos">Ver proyectos</a>
+      <a class="btn btn-outline" href="https://linkedin.com/in/renan-cunha-santos" target="_blank">LinkedIn ↗</a>
+    </div>
+    <div class="hero-badges">
+      <span class="badge badge-gold">PSM I · PSPO I</span>
+      <span class="badge badge-gold">Google PM · IBM PO</span>
+      <span class="badge badge-dim">Jira &amp; Confluence</span>
+      <span class="badge badge-dim">MS Project</span>
+      <span class="badge badge-dim">Power BI</span>
+      <span class="badge badge-dim">OKRs &amp; Roadmapping</span>
+      <span class="badge badge-dim">Value Stream Mapping</span>
+      <span class="badge badge-dim">Azure / SharePoint</span>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="stat-num">27</div><div class="stat-lbl">Personas lideradas</div></div>
+    <div class="hero-stat"><div class="stat-num">6+</div><div class="stat-lbl">Años experiencia</div></div>
+    <div class="hero-stat"><div class="stat-num">€25k</div><div class="stat-lbl">Presupuesto máx.</div></div>
+    <div class="hero-stat"><div class="stat-num">45%</div><div class="stat-lbl">Negocio recurrente ↑</div></div>
+    <div class="hero-stat"><div class="stat-num">20%</div><div class="stat-lbl">Tiempo ejecución ↓</div></div>
+    <div class="hero-stat"><div class="stat-num">0</div><div class="stat-lbl">Defectos críticos</div></div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<section class="wrap" id="proyectos">
+  <div class="section-header">
+    <div class="section-eyebrow">Experiencia seleccionada</div>
+    <div class="section-title">Proyectos Destacados</div>
+  </div>
+  <div class="projects">
+    <div class="card">
+      <span class="card-type t-agile">Agile / Scrum</span>
+      <div>
+        <div class="card-company">The Wise Dreams</div>
+        <div class="card-role">Scrum Master — IA &amp; Modelos de Lenguaje Generativo</div>
+        <div class="card-period">Sep 2025 – Actualidad · Las Palmas de Gran Canaria</div>
+      </div>
+      <p class="card-desc">Startup de tecnología inmersiva (VR + IA) con proyectos para el Spain Living Lab del Gobierno de España. Gestión simultánea de 3 equipos ágiles desarrollando soluciones LLM e IA generativa, coordinando sprints, dependencias y entregas paralelas.</p>
+      <div class="card-metrics">
+        <div class="metric-row"><span class="metric-k">Equipos gestionados</span><span class="metric-v">3 × 9 personas (27 total)</span></div>
+        <div class="metric-row"><span class="metric-k">Clientes</span><span class="metric-v">Barceló · Amadeus · TUI · Lopesan</span></div>
+        <div class="metric-row"><span class="metric-k">Defectos críticos en producción</span><span class="metric-v">0</span></div>
+        <div class="metric-row"><span class="metric-k">Metodología</span><span class="metric-v">Scrum · PSM I + PSPO I</span></div>
+      </div>
+      <div class="tools"><span class="tool">Jira</span><span class="tool">Confluence</span><span class="tool">LLMs</span><span class="tool">IA Generativa</span><span class="tool">VR</span><span class="tool">OKRs</span></div>
+    </div>
+    <div class="card">
+      <span class="card-type t-hybrid">Híbrido Agile–Waterfall</span>
+      <div>
+        <div class="card-company">Freelancer · Eventos MICE</div>
+        <div class="card-role">Gerente Senior de Proyectos de Eventos</div>
+        <div class="card-period">Oct 2024 – Dic 2025 · Madrid</div>
+      </div>
+      <p class="card-desc">Gestión completa del ciclo de vida de eventos corporativos de alto perfil para clientes del sector MICE. Introducción de marcos híbridos Agile-Waterfall/PMI y Value Stream Mapping para eliminar desperdicios en flujos de planificación.</p>
+      <div class="card-metrics">
+        <div class="metric-row"><span class="metric-k">Presupuesto por evento</span><span class="metric-v">Hasta €25.000</span></div>
+        <div class="metric-row"><span class="metric-k">Satisfacción del cliente</span><span class="metric-v">90%</span></div>
+        <div class="metric-row"><span class="metric-k">Reducción tiempo de ejecución</span><span class="metric-v">−20% vía VSM</span></div>
+        <div class="metric-row"><span class="metric-k">Negocio recurrente</span><span class="metric-v">+45%</span></div>
+      </div>
+      <div class="tools"><span class="tool">Jira</span><span class="tool">Power BI</span><span class="tool">Value Stream Mapping</span><span class="tool">Opex/Capex</span></div>
+    </div>
+    <div class="card">
+      <span class="card-type t-pmbok">Waterfall / PMI</span>
+      <div>
+        <div class="card-company">Intelcia / MEO</div>
+        <div class="card-role">Gestor de Proyectos — Portal Automatización de Campañas</div>
+        <div class="card-period">Sep 2019 – Ene 2024 · Faro, Portugal</div>
+      </div>
+      <p class="card-desc">Entrega de un portal interno que elimina la dependencia de TI para lanzar campañas comerciales. Ciclo completo Waterfall/PMI. También responsable del pipeline de ventas de +15 agentes para MEO, una de las mayores operadoras de Portugal (3M+ clientes).</p>
+      <div class="card-metrics">
+        <div class="metric-row"><span class="metric-k">Equipo</span><span class="metric-v">4 personas (2 devs · QA · PM)</span></div>
+        <div class="metric-row"><span class="metric-k">Dependencia TI eliminada</span><span class="metric-v">100%</span></div>
+        <div class="metric-row"><span class="metric-k">Clientes del operador</span><span class="metric-v">+3 millones</span></div>
+        <div class="metric-row"><span class="metric-k">Metodología</span><span class="metric-v">Waterfall · PMI · PMBOK</span></div>
+      </div>
+      <div class="tools"><span class="tool">MS Project</span><span class="tool">SharePoint</span><span class="tool">Azure Cloud</span><span class="tool">Gantt</span><span class="tool">WBS</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section class="wrap" id="scrum">
+  <div class="section-header">
+    <div class="section-eyebrow">Metodología</div>
+    <div class="section-title">Cómo trabajo en Scrum</div>
+  </div>
+
+  <p style="font-size:0.78rem;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;font-family:'Syne',sans-serif;font-weight:600;margin-bottom:1rem;">Ceremonias del sprint</p>
+  <div class="ceremonies">
+    <div class="ceremony"><div class="cer-num">01</div><h4>Sprint Planning</h4><p>Refinamiento del backlog con el PO. MoSCoW + Story Points. Sprint goal y verificación de capacidad.</p></div>
+    <div class="ceremony"><div class="cer-num">02</div><h4>Daily Stand-up</h4><p>15 min máx. Ayer / Hoy / Impedimentos. Log de bloqueos actualizado en tiempo real.</p></div>
+    <div class="ceremony"><div class="cer-num">03</div><h4>Sprint Review</h4><p>Demo a stakeholders. Criterios de aceptación validados. Velocity y tasa de defectos reportados.</p></div>
+    <div class="ceremony"><div class="cer-num">04</div><h4>Retrospectiva</h4><p>Start / Stop / Continue. Action items con responsables y fechas de entrega asignadas.</p></div>
+    <div class="ceremony"><div class="cer-num">05</div><h4>Refinamiento</h4><p>User stories desglosadas, criterios de aceptación redactados y estimaciones calibradas.</p></div>
+  </div>
+
+  <p style="font-family:'Syne',sans-serif;font-weight:600;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin:0 0 0.4rem;">Backlog priorizado — Plataforma IA Turismo (Sprint 4)</p>
+  <p style="font-size:0.8rem;color:var(--mid);margin-bottom:0.75rem;">MoSCoW · Story Points estimados con Planning Poker (Fibonacci)</p>
+  <div class="backlog-wrap">
+    <table class="backlog">
+      <thead>
+        <tr>
+          <th>ID</th><th>Historia de usuario</th><th>MoSCoW</th>
+          <th style="text-align:center;">SP</th><th>Estado</th><th>Criterio clave</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="story-id">US-14</td>
+          <td>Como director de hotel, quiero consultar el LLM en lenguaje natural para obtener previsiones de ocupación</td>
+          <td><span class="moscow M">Must</span></td><td class="sp-cell">8</td>
+          <td class="status-done">✓ Hecho</td>
+          <td style="font-size:0.77rem;color:var(--mid);">Respuesta ≤3s · Precisión ≥85% · Fallback en timeout</td>
+        </tr>
+        <tr>
+          <td class="story-id">US-15</td>
+          <td>Como analista de TUI, quiero exportar datos de previsión a CSV con un clic</td>
+          <td><span class="moscow M">Must</span></td><td class="sp-cell">3</td>
+          <td class="status-done">✓ Hecho</td>
+          <td style="font-size:0.77rem;color:var(--mid);">CSV con cabeceras · UTF-8 · Funciona en móvil</td>
+        </tr>
+        <tr>
+          <td class="story-id">US-17</td>
+          <td>Como administrador de Barceló, quiero un dashboard con la velocity del equipo en tiempo real</td>
+          <td><span class="moscow S">Should</span></td><td class="sp-cell">5</td>
+          <td class="status-wip">⟳ En curso</td>
+          <td style="font-size:0.77rem;color:var(--mid);">Actualización cada 30s · Burndown visible · Filtro por equipo</td>
+        </tr>
+        <tr>
+          <td class="story-id">US-19</td>
+          <td>Como usuario, quiero cambiar el idioma de la interfaz entre ES/EN/PT</td>
+          <td><span class="moscow C">Could</span></td><td class="sp-cell">3</td>
+          <td class="status-todo">⊙ Pendiente</td>
+          <td style="font-size:0.77rem;color:var(--mid);">Todos los textos traducidos · Persistido en sesión</td>
+        </tr>
+        <tr>
+          <td class="story-id">US-22</td>
+          <td>Como administrador, quiero informes semanales de precios de la competencia generados por IA</td>
+          <td><span class="moscow W">Won't</span></td><td class="sp-cell">13</td>
+          <td class="status-defer">⊗ Diferido</td>
+          <td style="font-size:0.77rem;color:var(--mid);">Movido a Sprint 5 — pendiente firma de contrato de datos</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-family:'Syne',sans-serif;font-weight:600;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin:2.5rem 0 1rem;">Proceso de eliminación de impedimentos</p>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">01</div><h4>Detectar</h4><p>Stand-up o log async en Jira. Bloqueo registrado el mismo día que aparece.</p></div>
+    <div class="flow-step"><div class="flow-num">02</div><h4>Clasificar</h4><p>¿Puede el SM resolverlo? Sí → resuelto en 24h. No → escalar al PO o stakeholder.</p></div>
+    <div class="flow-step"><div class="flow-num">03</div><h4>Escalar</h4><p>Notificación inmediata. SLA de respuesta: 24h para bloqueos críticos de sprint.</p></div>
+    <div class="flow-step"><div class="flow-num">04</div><h4>Cerrar</h4><p>Seguimiento hasta resolución. Incluido en el informe de cierre de sprint.</p></div>
+    <div class="flow-step"><div class="flow-num">05</div><h4>Mejorar</h4><p>Patrones revisados en retrospectiva → acción de mejora asignada con responsable.</p></div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section class="wrap" id="artefactos">
+  <div class="section-header">
+    <div class="section-eyebrow">Recursos descargables</div>
+    <div class="section-title">Plantillas &amp; Artefactos</div>
+  </div>
+  <div class="artifacts-grid">
+    <div class="art-card">
+      <div class="art-icon">📋</div>
+      <h3>Plantilla Sprint Planning</h3>
+      <p>Backlog priorizado con MoSCoW + Story Points. Cálculo de capacidad, sprint goal y checklist de compromiso del equipo.</p>
+      <a class="art-link" href="artifacts/sprint-planning-template.md">↓ sprint-planning-template.md</a>
+    </div>
+    <div class="art-card">
+      <div class="art-icon">✅</div>
+      <h3>Definition of Done + Criterios de Aceptación</h3>
+      <p>Checklist DoD para proyectos tech/IA. Guía de escritura Given/When/Then con ejemplos reales de proyectos.</p>
+      <a class="art-link" href="artifacts/definition-of-done.md">↓ definition-of-done.md</a>
+    </div>
+    <div class="art-card">
+      <div class="art-icon">📊</div>
+      <h3>Dashboard KPIs de Sprint</h3>
+      <p>Velocity, tasa de defectos y burndown. Notas de configuración en Power BI y esquema de datos de proyectos reales.</p>
+      <a class="art-link" href="artifacts/sprint-kpi-dashboard.md">↓ sprint-kpi-dashboard.md</a>
+    </div>
+    <div class="art-card">
+      <div class="art-icon">📅</div>
+      <h3>Plantilla Gantt (Waterfall/PMI)</h3>
+      <p>WBS, hitos, control de costos y informe de estado semanal. Basado en el portal real de Intelcia/MEO.</p>
+      <a class="art-link" href="artifacts/gantt-waterfall-template.md">↓ gantt-waterfall-template.md</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section class="wrap">
+  <div class="cert-grid">
+    <div>
+      <div class="section-header" style="margin-bottom:1.5rem;">
+        <div class="section-eyebrow">Credenciales</div>
+        <div class="section-title" style="font-size:1.3rem;">Certificaciones</div>
+      </div>
+      <div class="certs">
+        <div class="cert"><div class="cert-dot"></div><div><div class="cert-name">PSM I — Professional Scrum Master</div><div class="cert-issuer">Scrum.org · 2023</div></div></div>
+        <div class="cert"><div class="cert-dot"></div><div><div class="cert-name">PSPO I — Professional Product Owner</div><div class="cert-issuer">Scrum.org · 2025</div></div></div>
+        <div class="cert"><div class="cert-dot"></div><div><div class="cert-name">AI for Product Owners</div><div class="cert-issuer">Scrum Alliance · 2025</div></div></div>
+        <div class="cert"><div class="cert-dot"></div><div><div class="cert-name">IBM Product Owner</div><div class="cert-issuer">IBM · 2025</div></div></div>
+        <div class="cert"><div class="cert-dot"></div><div><div class="cert-name">Google Project Management</div><div class="cert-issuer">Google · 2025</div></div></div>
+        <div class="cert"><div class="cert-dot"></div><div><div class="cert-name">Postgrado en Gestión de Proyectos</div><div class="cert-issuer">ENEB — Barcelona · 2023</div></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="section-header" style="margin-bottom:1.5rem;">
+        <div class="section-eyebrow">Comunicación</div>
+        <div class="section-title" style="font-size:1.3rem;">Idiomas</div>
+      </div>
+      <div class="langs">
+        <div class="lang"><div class="lang-name">Portugués</div><div class="lang-level">Nativo</div><div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div></div>
+        <div class="lang"><div class="lang-name">Español</div><div class="lang-level">C2 — Dominio pleno</div><div class="lang-bar"><div class="lang-fill" style="width:95%"></div></div></div>
+        <div class="lang"><div class="lang-name">Inglés</div><div class="lang-level">C1 — Avanzado</div><div class="lang-bar"><div class="lang-fill" style="width:80%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section class="wrap contact-section" id="contacto">
+  <div class="section-header">
+    <div class="section-eyebrow" style="color:var(--gold);">Disponible para nuevas oportunidades</div>
+    <div class="section-title">Contacto</div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-item"><span class="contact-label">Teléfono</span><span class="contact-val">+34 603 377 567</span></div>
+    <div class="contact-item"><span class="contact-label">Email</span><span class="contact-val"><a href="mailto:renancunha1995@gmail.com">renancunha1995@gmail.com</a></span></div>
+    <div class="contact-item"><span class="contact-label">LinkedIn</span><span class="contact-val"><a href="https://linkedin.com/in/renan-cunha-santos" target="_blank">linkedin.com/in/renan-cunha-santos</a></span></div>
+    <div class="contact-item"><span class="contact-label">Ubicación</span><span class="contact-val">Las Palmas de Gran Canaria, España</span></div>
+    <div class="contact-item"><span class="contact-label">Idiomas</span><span class="contact-val">PT (Nativo) · ES (C2) · EN (C1)</span></div>
+  </div>
+</section>
+
+<footer>Renan Cunha dos Santos · Gerente Senior de Proyectos &amp; Scrum Master · Las Palmas de Gran Canaria</footer>
+</body>
+</html>
