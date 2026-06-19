@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Renan Cunha dos Santos — PM Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink:       #0D0F14;
+    --paper:     #F7F5F0;
+    --mid:       #6B6E78;
+    --rule:      #E2DDD6;
+    --gold:      #C8933A;
+    --gold-pale: #F5EBD8;
+    --teal:      #1B4F52;
+    --teal-pale: #D6EBEC;
+    --red:       #A63228;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0 5vw;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    min-height: 80px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--gold);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    color: var(--paper);
+    text-decoration: none;
+  }
+  .logo span { color: var(--gold); }
+  nav a {
+    color: #AAA;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-left: 2rem;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 5rem 5vw 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,147,58,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .hero-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #7A7E8B;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.8rem;
+  }
+  .hero-bio {
+    max-width: 600px;
+    color: #BFC2CB;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #222631;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: #7A7E8B;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid #2A2D38;
+    border-radius: 3px;
+    color: #7A7E8B;
+    letter-spacing: 0.04em;
+  }
+  .tag.gold { border-color: var(--gold); color: var(--gold); }
+
+  /* ── SECTION WRAPPER ── */
+  section { padding: 5rem 5vw; }
+  section + section { border-top: 1px solid var(--rule); }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--gold);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.2;
+    margin-bottom: 3rem;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5px;
+    background: var(--rule);
+    border: 1.5px solid var(--rule);
+  }
+  .project-card {
+    background: var(--paper);
+    padding: 2rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .project-card:hover { background: #FDFBF7; }
+
+  .project-type {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+  .type-agile  { background: var(--teal-pale);  color: var(--teal); }
+  .type-hybrid { background: #EAE6F5;            color: #4A3A8C; }
+  .type-pmbok  { background: #FDE8E6;            color: var(--red); }
+
+  .project-company {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    margin-bottom: 0.2rem;
+  }
+  .project-role {
+    font-size: 0.8rem;
+    color: var(--mid);
+    margin-bottom: 0.25rem;
+  }
+  .project-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .project-desc {
+    font-size: 0.88rem;
+    color: var(--mid);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+  .project-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #F0EDE8;
+    border-left: 3px solid var(--gold);
+  }
+  .metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+  .metric-key { color: var(--mid); }
+  .metric-val {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 0.85rem;
+  }
+  .project-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .tool-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+    background: var(--ink);
+    color: #BFC2CB;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── SCRUM SECTION ── */
+  .scrum-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-bottom: 3rem;
+  }
+  .scrum-card {
+    background: var(--paper);
+    padding: 1.75rem;
+  }
+  .scrum-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .scrum-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+  }
+  .scrum-card p {
+    font-size: 0.82rem;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+
+  /* ── BACKLOG TABLE ── */
+  .backlog-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    margin-top: 1.5rem;
+  }
+  .backlog-table th {
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  .backlog-table td {
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  .backlog-table tr:hover td { background: var(--gold-pale); }
+  .moscow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+  .M { background: #FDE8E6; color: var(--red); }
+  .S { background: var(--gold-pale); color: #8B5E1A; }
+  .C { background: var(--teal-pale); color: var(--teal); }
+  .W { background: #F0EDE8; color: var(--mid); }
+  .sp {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  /* ── CEREMONIES ── */
+  .ceremonies-flow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  .ceremony {
+    padding: 1.5rem 1.25rem;
+    border: 1px solid var(--rule);
+    border-right: none;
+    position: relative;
+  }
+  .ceremony:last-child { border-right: 1px solid var(--rule); }
+  .ceremony::after {
+    content: '→';
+    position: absolute;
+    right: -0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 1rem;
+    z-index: 1;
+  }
+  .ceremony:last-child::after { display: none; }
+  .ceremony-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+  .ceremony h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem;
+  }
+  .ceremony p {
+    font-size: 0.76rem;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+
+  /* ── ARTIFACTS ── */
+  .artifacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .artifact-card {
+    border: 1px solid var(--rule);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .artifact-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .artifact-card p {
+    font-size: 0.82rem;
+    color: var(--mid);
+    line-height: 1.6;
+    flex: 1;
+  }
+  .artifact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--teal-pale);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+    width: fit-content;
+  }
+  .artifact-link:hover { border-color: var(--teal); }
+
+  /* ── CERTIFICATIONS ── */
+  .cert-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .cert-item {
+    background: var(--paper);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .cert-dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .cert-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    margin-bottom: 0.2rem;
+  }
+  .cert-issuer {
+    font-size: 0.75rem;
+    color: var(--mid);
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .contact-section .section-title { color: var(--paper); }
+  .contact-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+  }
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .contact-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .contact-val {
+    font-size: 0.9rem;
+    color: #BFC2CB;
+  }
+  .contact-val a { color: #BFC2CB; text-decoration: none; }
+  .contact-val a:hover { color: var(--gold); }
+
+  footer {
+    background: #080A0E;
+    color: #444;
+    text-align: center;
+    padding: 1.25rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 600px) {
+    header { grid-template-columns: 1fr; gap: 0.5rem; padding: 1rem 5vw; }
+    nav { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    nav a { margin-left: 0; }
+    .hero-stats { gap: 1.5rem; }
+    .ceremony::after { display: none; }
+    .ceremony { border-right: 1px solid var(--rule); border-bottom: none; }
+    .ceremony:last-child { border-bottom: 1px solid var(--rule); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#"><span>R</span>enan Cunha</a>
+  <nav>
+    <a href="#projects">Projects</a>
+    <a href="#scrum">Scrum</a>
+    <a href="#artifacts">Artifacts</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">PM Portfolio · 2019 – Present</div>
+  <h1>Senior Project<br/>Manager <em>&</em><br/>Scrum Master</h1>
+  <div class="hero-role">Agile · Waterfall/PMI · AI &amp; VR</div>
+  <p class="hero-bio">
+    6+ years delivering end-to-end projects across AI, telecoms, and events.
+    Currently leading 3 agile teams (27 people) building generative AI and VR
+    solutions for Barceló, Amadeus, TUI, and Lopesan. Certified PSM I &amp; PSPO I.
+    Trilingual: PT · ES · EN.
+  </p>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">27</div>
+      <div class="stat-label">People led</div>
+    </div>
+    <div>
+      <div class="stat-num">6+</div>
+      <div class="stat-label">Years experience</div>
+    </div>
+    <div>
+      <div class="stat-num">€25k</div>
+      <div class="stat-label">Max budget / event</div>
+    </div>
+    <div>
+      <div class="stat-num">45%</div>
+      <div class="stat-label">Repeat business ↑</div>
+    </div>
+    <div>
+      <div class="stat-num">20%</div>
+      <div class="stat-label">Execution time ↓</div>
+    </div>
+  </div>
+  <div class="hero-tags">
+    <span class="tag gold">PSM I · PSPO I</span>
+    <span class="tag">Jira &amp; Confluence</span>
+    <span class="tag">MS Project</span>
+    <span class="tag">Power BI</span>
+    <span class="tag">OKRs &amp; Roadmapping</span>
+    <span class="tag">Azure / SharePoint</span>
+    <span class="tag">Generative AI</span>
+    <span class="tag">Value Stream Mapping</span>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Selected Work</div>
+  <div class="section-title">Project Case Studies</div>
+
+  <div class="projects-grid">
+
+    <!-- The Wise Dreams -->
+    <div class="project-card">
+      <span class="project-type type-agile">Agile / Scrum</span>
+      <div class="project-company">The Wise Dreams</div>
+      <div class="project-role">Scrum Master — AI &amp; Generative Language Models</div>
+      <div class="project-period">Sep 2025 – Present · Las Palmas de Gran Canaria</div>
+      <p class="project-desc">
+        Immersive tech startup (VR + AI) delivering under Spain's Government Living Lab programme.
+        Leading 3 simultaneous agile teams building LLM integrations and VR experiences for
+        tourism sector clients. Bridge between AI researchers, engineers, and enterprise stakeholders.
+      </p>
+      <div class="project-metrics">
+        <div class="metric-row">
+          <span class="metric-key">Teams managed simultaneously</span>
+          <span class="metric-val">3 × 9 people</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Clients</span>
+          <span class="metric-val">Barceló · Amadeus · TUI · Lopesan</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Critical defects in production</span>
+          <span class="metric-val">0</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Methodology</span>
+          <span class="metric-val">Scrum · PSM I + PSPO I</span>
+        </div>
+      </div>
+      <div class="project-tools">
+        <span class="tool-chip">Jira</span>
+        <span class="tool-chip">Confluence</span>
+        <span class="tool-chip">LLMs</span>
+        <span class="tool-chip">Generative AI</span>
+        <span class="tool-chip">VR</span>
+        <span class="tool-chip">OKRs</span>
+      </div>
+    </div>
+
+    <!-- Freelancer MICE -->
+    <div class="project-card">
+      <span class="project-type type-hybrid">Hybrid Agile–Waterfall</span>
+      <div class="project-company">Freelancer · MICE Events</div>
+      <div class="project-role">Senior Event Project Manager</div>
+      <div class="project-period">Oct 2024 – Dec 2025 · Madrid</div>
+      <p class="project-desc">
+        End-to-end lifecycle delivery of high-profile corporate events for MICE sector clients.
+        Introduced hybrid Agile-Waterfall frameworks, adapting methodology to each client's
+        operational maturity. Executed Value Stream Mapping to eliminate waste across planning workflows.
+      </p>
+      <div class="project-metrics">
+        <div class="metric-row">
+          <span class="metric-key">Budget managed per event</span>
+          <span class="metric-val">Up to €25,000</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Client satisfaction rate</span>
+          <span class="metric-val">90%</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Execution time reduction</span>
+          <span class="metric-val">20% via VSM</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Repeat business increase</span>
+          <span class="metric-val">+45%</span>
+        </div>
+      </div>
+      <div class="project-tools">
+        <span class="tool-chip">Jira</span>
+        <span class="tool-chip">Power BI</span>
+        <span class="tool-chip">Opex/Capex</span>
+        <span class="tool-chip">Value Stream Mapping</span>
+        <span class="tool-chip">Stakeholder Matrix</span>
+      </div>
+    </div>
+
+    <!-- Intelcia / MEO -->
+    <div class="project-card">
+      <span class="project-type type-pmbok">Waterfall / PMI</span>
+      <div class="project-company">Intelcia / MEO</div>
+      <div class="project-role">Project Manager — Sales Campaign Automation Portal</div>
+      <div class="project-period">Sep 2019 – Jan 2024 · Faro, Portugal</div>
+      <p class="project-desc">
+        Led delivery of an internal portal enabling commercial teams to launch sales campaigns
+        autonomously — eliminating IT dependency entirely. Full Waterfall/PMI lifecycle from
+        kick-off to formal client acceptance. Also managed sales KPIs for 15+ agent team at
+        MEO, Portugal's largest telecom (3M+ customers).
+      </p>
+      <div class="project-metrics">
+        <div class="metric-row">
+          <span class="metric-key">Team size</span>
+          <span class="metric-val">4 (2 devs · QA · PM)</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">IT dependency eliminated</span>
+          <span class="metric-val">100%</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Commercial team managed</span>
+          <span class="metric-val">15+ agents</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Methodology</span>
+          <span class="metric-val">Waterfall · PMI · PMBOK</span>
+        </div>
+      </div>
+      <div class="project-tools">
+        <span class="tool-chip">MS Project</span>
+        <span class="tool-chip">SharePoint</span>
+        <span class="tool-chip">Azure Cloud</span>
+        <span class="tool-chip">Gantt</span>
+        <span class="tool-chip">WBS</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SCRUM APPROACH -->
+<section id="scrum">
+  <div class="section-label">Methodology</div>
+  <div class="section-title">How I Work in Scrum</div>
+
+  <!-- Ceremonies -->
+  <h3 style="font-family:'Syne',sans-serif;font-size:0.9rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);margin-bottom:1.25rem;">Sprint Ceremonies</h3>
+  <div class="ceremonies-flow">
+    <div class="ceremony">
+      <div class="ceremony-num">01</div>
+      <h4>Sprint Planning</h4>
+      <p>Backlog refinement with PO. MoSCoW + Story Points. Sprint goal defined. Capacity checked.</p>
+    </div>
+    <div class="ceremony">
+      <div class="ceremony-num">02</div>
+      <h4>Daily Stand-up</h4>
+      <p>15 min max. Yesterday / Today / Blockers. Impediment log updated in real time.</p>
+    </div>
+    <div class="ceremony">
+      <div class="ceremony-num">03</div>
+      <h4>Sprint Review</h4>
+      <p>Demo to stakeholders. Acceptance criteria validated. Velocity and defect rate reported.</p>
+    </div>
+    <div class="ceremony">
+      <div class="ceremony-num">04</div>
+      <h4>Retrospective</h4>
+      <p>Start / Stop / Continue. Action items assigned with owners and due dates.</p>
+    </div>
+    <div class="ceremony">
+      <div class="ceremony-num">05</div>
+      <h4>Backlog Refinement</h4>
+      <p>User stories broken down. Acceptance criteria written. Estimates calibrated.</p>
+    </div>
+  </div>
+
+  <!-- Backlog prioritization example -->
+  <h3 style="font-family:'Syne',sans-serif;font-size:0.9rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);margin:2.5rem 0 0.5rem;">Sample Sprint Backlog — AI Tourism Platform (Sprint 4)</h3>
+  <p style="font-size:0.82rem;color:var(--mid);margin-bottom:0.5rem;">Prioritized using MoSCoW. Story Points estimated with Planning Poker (Fibonacci).</p>
+
+  <table class="backlog-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>User Story</th>
+        <th>MoSCoW</th>
+        <th>SP</th>
+        <th>Status</th>
+        <th>Acceptace Criteria (key)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-family:'JetBrains Mono',monospace;color:var(--mid);font-size:0.72rem;">US-14</td>
+        <td>As a hotel manager, I want to query the LLM via natural language to get occupancy forecasts</td>
+        <td><span class="moscow M">Must</span></td>
+        <td class="sp">8</td>
+        <td style="color:var(--teal);font-size:0.8rem;font-weight:600;">✓ Done</td>
+        <td style="font-size:0.78rem;color:var(--mid);">Response ≤ 3s · Accuracy ≥ 85% · Fallback on timeout</td>
+      </tr>
+      <tr>
+        <td style="font-family:'JetBrains Mono',monospace;color:var(--mid);font-size:0.72rem;">US-15</td>
+        <td>As a TUI analyst, I want to export forecast data to CSV with one click</td>
+        <td><span class="moscow M">Must</span></td>
+        <td class="sp">3</td>
+        <td style="color:var(--teal);font-size:0.8rem;font-weight:600;">✓ Done</td>
+        <td style="font-size:0.78rem;color:var(--mid);">CSV includes headers · UTF-8 encoded · Works on mobile</td>
+      </tr>
+      <tr>
+        <td style="font-family:'JetBrains Mono',monospace;color:var(--mid);font-size:0.72rem;">US-17</td>
+        <td>As a Barceló admin, I want a dashboard showing real-time team velocity per sprint</td>
+        <td><span class="moscow S">Should</span></td>
+        <td class="sp">5</td>
+        <td style="color:var(--gold);font-size:0.8rem;font-weight:600;">⟳ In Progress</td>
+        <td style="font-size:0.78rem;color:var(--mid);">Auto-refresh every 30s · Burndown visible · Filters by team</td>
+      </tr>
+      <tr>
+        <td style="font-family:'JetBrains Mono',monospace;color:var(--mid);font-size:0.72rem;">US-19</td>
+        <td>As a user, I want to switch the UI language between EN/ES/PT</td>
+        <td><span class="moscow C">Could</span></td>
+        <td class="sp">3</td>
+        <td style="color:var(--mid);font-size:0.8rem;">⊙ To Do</td>
+        <td style="font-size:0.78rem;color:var(--mid);">All strings translated · Persisted in session · RTL not required</td>
+      </tr>
+      <tr>
+        <td style="font-family:'JetBrains Mono',monospace;color:var(--mid);font-size:0.72rem;">US-22</td>
+        <td>As an admin, I want AI-generated competitor pricing reports weekly</td>
+        <td><span class="moscow W">Won't</span></td>
+        <td class="sp">13</td>
+        <td style="color:var(--mid);font-size:0.8rem;">⊗ Deferred</td>
+        <td style="font-size:0.78rem;color:var(--mid);">Moved to Sprint 5 backlog pending data contract sign-off</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Scrum principles -->
+  <div style="margin-top:3rem;">
+    <h3 style="font-family:'Syne',sans-serif;font-size:0.9rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);margin-bottom:1.25rem;">How I remove impediments</h3>
+    <div class="scrum-grid">
+      <div class="scrum-card">
+        <div class="scrum-icon">🔍</div>
+        <h3>Identify Early</h3>
+        <p>Daily stand-ups and async impediment log in Jira. Blockers flagged before they affect velocity.</p>
+      </div>
+      <div class="scrum-card">
+        <div class="scrum-icon">⚡</div>
+        <h3>Escalate Fast</h3>
+        <p>Clear escalation path to PO and stakeholders. SLA for response on critical blockers: 24h.</p>
+      </div>
+      <div class="scrum-card">
+        <div class="scrum-icon">🔗</div>
+        <h3>Bridge Communication</h3>
+        <p>Technical language translated for business stakeholders. Business priorities translated for engineers.</p>
+      </div>
+      <div class="scrum-card">
+        <div class="scrum-icon">📊</div>
+        <h3>Measure Impact</h3>
+        <p>Impediment resolution tracked in sprint reports. Patterns addressed in retrospectives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTIFACTS -->
+<section id="artifacts">
+  <div class="section-label">Downloads</div>
+  <div class="section-title">Templates &amp; Artifacts</div>
+
+  <div class="artifacts-grid">
+    <div class="artifact-card">
+      <h3>Sprint Planning Template</h3>
+      <p>Backlog prioritized with MoSCoW + Story Points. Includes capacity planning, sprint goal definition, and team commitment checklist.</p>
+      <a class="artifact-link" href="artifacts/sprint-planning-template.md">↓ sprint-planning-template.md</a>
+    </div>
+    <div class="artifact-card">
+      <h3>Definition of Done + Acceptance Criteria</h3>
+      <p>Reusable DoD checklist for AI/tech projects. Includes acceptance criteria writing guide with examples from real user stories.</p>
+      <a class="artifact-link" href="artifacts/definition-of-done.md">↓ definition-of-done.md</a>
+    </div>
+    <div class="artifact-card">
+      <h3>Sprint KPI Dashboard Guide</h3>
+      <p>How to track velocity, defect rate, and burndown. Includes Power BI setup notes and sample data schema used in real projects.</p>
+      <a class="artifact-link" href="artifacts/sprint-kpi-dashboard.md">↓ sprint-kpi-dashboard.md</a>
+    </div>
+    <div class="artifact-card">
+      <h3>Gantt Template (Waterfall/PMI)</h3>
+      <p>WBS structure, milestone definitions, and cost monitoring framework. Based on the Sales Campaign Automation Portal at Intelcia/MEO.</p>
+      <a class="artifact-link" href="artifacts/gantt-waterfall-template.md">↓ gantt-waterfall-template.md</a>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section>
+  <div class="section-label">Credentials</div>
+  <div class="section-title">Certifications</div>
+  <div class="cert-list">
+    <div class="cert-item"><div class="cert-dot"></div><div><div class="cert-name">PSM I — Professional Scrum Master</div><div class="cert-issuer">Scrum.org · 2023</div></div></div>
+    <div class="cert-item"><div class="cert-dot"></div><div><div class="cert-name">PSPO I — Professional Product Owner</div><div class="cert-issuer">Scrum.org · 2025</div></div></div>
+    <div class="cert-item"><div class="cert-dot"></div><div><div class="cert-name">AI for Product Owners</div><div class="cert-issuer">Scrum Alliance · 2025</div></div></div>
+    <div class="cert-item"><div class="cert-dot"></div><div><div class="cert-name">IBM Product Owner</div><div class="cert-issuer">IBM · 2025</div></div></div>
+    <div class="cert-item"><div class="cert-dot"></div><div><div class="cert-name">Google Project Management</div><div class="cert-issuer">Google · 2025</div></div></div>
+    <div class="cert-item"><div class="cert-dot"></div><div><div class="cert-name">Post-Graduation in Project Management</div><div class="cert-issuer">ENEB — Barcelona · 2023</div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-label">Get in Touch</div>
+  <div class="section-title">Contact</div>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <span class="contact-label">Phone</span>
+      <span class="contact-val">+34 603 377 567</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Email</span>
+      <span class="contact-val"><a href="mailto:renancunha1995@gmail.com">renancunha1995@gmail.com</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">LinkedIn</span>
+      <span class="contact-val"><a href="https://linkedin.com/in/renan-cunha-santos" target="_blank">linkedin.com/in/renan-cunha-santos</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Location</span>
+      <span class="contact-val">Las Palmas de Gran Canaria, Spain</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Languages</span>
+      <span class="contact-val">PT (Native) · ES (C2) · EN (C1)</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Renan Cunha dos Santos · Senior PM &amp; Scrum Master · Las Palmas de Gran Canaria
+</footer>
+
+</body>
+</html>
