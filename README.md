@@ -12,7 +12,7 @@
 
 ## 🌐 Live Portfolio
 
-**[View the full portfolio →](https://your-username.github.io/pm-portfolio)**
+**[View the full portfolio →](https://renancunhas.github.io/pm-portfolio/)**
 
 > *(Replace with your actual GitHub Pages URL after enabling it in Settings → Pages)*
 
